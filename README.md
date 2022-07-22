@@ -6,7 +6,7 @@
 - Display date / location / weather / temperature on UI
 - Change the background color according to the hours
 
-### Screenshots
+### Results
 
 ![Screenshot](Screenshot.png)
 
