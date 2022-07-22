@@ -53,7 +53,7 @@ const Content = ({ date, weatherData }: ContentProps) => {
   const weather = weatherData.weather.length > 0 ? weatherData.weather[0] : null;
   const state = weather === null ? "Clear" : weather.main;
   const iconName = weather === null ? "01d" : weather.icon;
-  const temperature = weatherData.main.temp;
+  const temperature = Math.round(weatherData.main.temp);
 
   return (
     <>
