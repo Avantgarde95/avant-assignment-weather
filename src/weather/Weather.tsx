@@ -85,9 +85,15 @@ async function getPosition(): Promise<Position | null> {
   // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API
   return new Promise((resolve, reject) => {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(position => {
-        resolve({ latitude: position.coords.latitude, longitude: position.coords.longitude });
-      });
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          resolve({ latitude: position.coords.latitude, longitude: position.coords.longitude });
+        },
+        error => {
+          console.error(error);
+          resolve(null);
+        }
+      );
     } else {
       resolve(null);
     }
