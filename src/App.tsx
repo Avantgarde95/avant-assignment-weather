@@ -1,36 +1,42 @@
 import React from "react";
-import "./App.css";
 import styled, { createGlobalStyle } from "styled-components";
-import Weather from "./weather/Weather";
 
-const GlobalStyle = createGlobalStyle`
-  *{  
-    box-sizing: border-box;
-  }
+import Weather from "weather/Weather";
+
+const Global = createGlobalStyle`
   html {
-    font-size : 10px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    font-size: 62.5%;
+    font-family: "Raleway", sans-serif;
   }
+
   body {
     width: 100%;
+    height: 100%;
     margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    width: 100%;
+    height: 100%;
   }
 `;
-function App() {
-  return (
-    <Wrapper className="App">
-      <GlobalStyle />
-      <Weather />
-    </Wrapper>
-  );
-}
+
+const App = () => (
+  <Container>
+    <Global />
+    <Weather />
+  </Container>
+);
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
 export default App;
-
-const Wrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
