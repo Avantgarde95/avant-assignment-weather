@@ -38,16 +38,31 @@ const Weather = () => {
 
   return (
     <Container isDay={isDay(date)}>
-      {weatherData !== null && (
-        <>
-          <DateView>{formatDate(date)}</DateView>
-          <Location>{weatherData.name}</Location>
-          <State>{weatherData.weather[0].main}</State>
-          <Icon src={getIconURL(weatherData.weather[0].icon)} alt={weatherData.weather[0].main} />
-          <Temperature>{weatherData.main.temp}&deg;C</Temperature>
-        </>
-      )}
+      {weatherData !== null && <Content date={date} weatherData={weatherData} />}
     </Container>
+  );
+};
+
+interface ContentProps {
+  date: Date;
+  weatherData: WeatherData;
+}
+
+const Content = ({ date, weatherData }: ContentProps) => {
+  const location = weatherData.name;
+  const weather = weatherData.weather.length > 0 ? weatherData.weather[0] : null;
+  const state = weather === null ? "Clear" : weather.main;
+  const iconName = weather === null ? "01d" : weather.icon;
+  const temperature = weatherData.main.temp;
+
+  return (
+    <>
+      <DateView>{formatDate(date)}</DateView>
+      <Location>{location}</Location>
+      <State>{state}</State>
+      <Icon src={getIconURL(iconName)} alt={state} />
+      <Temperature>{temperature}&deg;C</Temperature>
+    </>
   );
 };
 
